@@ -146,6 +146,78 @@
       <file name="src/osx/cocoa/tooltip.mm"/>
       <file name="src/osx/cocoa/utils.mm"/>
       <file name="src/osx/cocoa/window.mm"/>
+
+
+      <file name="src/osx/carbon/app.cpp"/>
+      <file name="src/osx/carbon/clipbrd.cpp"/>
+      <file name="src/osx/carbon/colordlg.cpp"/>
+      <file name="src/osx/carbon/colordlgosx.mm"/>
+      <file name="src/osx/carbon/combobox.cpp"/>
+      <file name="src/osx/carbon/control.cpp"/>
+      <file name="src/osx/carbon/cursor.cpp"/>
+      <file name="src/osx/carbon/dataobj.cpp"/>
+      <file name="src/osx/carbon/dcclient.cpp"/>
+      <file name="src/osx/carbon/dcprint.cpp"/>
+      <file name="src/osx/carbon/dcscreen.cpp"/>
+      <file name="src/osx/carbon/dialog.cpp"/>
+      <file name="src/osx/carbon/font.cpp"/>
+      <file name="src/osx/carbon/fontdlg.cpp"/>
+      <file name="src/osx/carbon/fontdlgosx.mm"/>
+      <file name="src/osx/carbon/frame.cpp"/>
+      <file name="src/osx/carbon/gdiobj.cpp"/>
+      <file name="src/osx/carbon/graphics.cpp"/>
+      <file name="src/osx/carbon/icon.cpp"/>
+      <file name="src/osx/carbon/joystick.cpp"/>
+      <file name="src/osx/carbon/main.cpp"/>
+      <file name="src/osx/carbon/mdi.cpp"/>
+      <file name="src/osx/carbon/mediactrl.cpp"/>
+      <file name="src/osx/carbon/menuitem.cpp"/>
+      <file name="src/osx/carbon/overlay.cpp"/>
+      <file name="src/osx/carbon/popupwin.cpp"/>
+      <file name="src/osx/carbon/region.cpp"/>
+      <file name="src/osx/carbon/renderer.cpp"/>
+      <file name="src/osx/carbon/settings.cpp"/>
+      <file name="src/osx/carbon/sound.cpp"/>
+      <file name="src/osx/carbon/statbrma.cpp"/>
+      <file name="src/osx/carbon/statline.cpp"/>
+      <file name="src/osx/carbon/uma.cpp"/>
+      <file name="src/osx/carbon/utilscocoa.mm"/>
+   </section>
+
+
+   <section if="macos">
+
+      <file name="src/unix/apptraits.cpp"/>
+      <file name="src/unix/appunix.cpp"/>
+      <file name="src/unix/dialup.cpp"/>
+      <file name="src/unix/dir.cpp"/>
+      <file name="src/unix/displayx11.cpp" if="linux" />
+      <file name="src/unix/dlunix.cpp"/>
+      <file name="src/unix/epolldispatcher.cpp"/>
+      <file name="src/unix/evtloopunix.cpp"/>
+      <file name="src/unix/fdiounix.cpp"/>
+      <file name="src/unix/fontenum.cpp" if="linux"/>
+      <file name="src/unix/fontutil.cpp" if="linux" />
+      <file name="src/unix/fswatcher_inotify.cpp"/>
+      <file name="src/unix/fswatcher_kqueue.cpp"/>
+      <file name="src/unix/glx11.cpp" if="linux" />
+      <file name="src/unix/joystick.cpp"/>
+      <file name="src/unix/mediactrl.cpp"/>
+      <file name="src/unix/mimetype.cpp"/>
+      <file name="src/unix/net.cpp"/>
+      <file name="src/unix/snglinst.cpp"/>
+      <file name="src/unix/sockunix.cpp"/>
+      <!-- <file name="src/unix/sound.cpp"/> -->
+      <file name="src/unix/sound_sdl.cpp" if="sdl"/>
+      <file name="src/unix/stackwalk.cpp"/>
+      <file name="src/unix/stdpaths.cpp"/>
+      <file name="src/unix/taskbarx11.cpp" if="linux" />
+      <file name="src/unix/threadpsx.cpp"/>
+      <file name="src/unix/timerunx.cpp"/>
+      <file name="src/unix/uiactionx11.cpp" if="linux" />
+      <file name="src/unix/utilsunx.cpp"/>
+      <file name="src/unix/utilsx11.cpp" if="linux" />
+      <file name="src/unix/wakeuppipe.cpp"/>
    </section>
 
    <section if="windows">
@@ -353,7 +425,7 @@
    <file name="src/generic/infobar.cpp" />
    <file name="src/generic/laywin.cpp" />
    <file name="src/generic/listbkg.cpp" />
-   <file name="src/generic/listctrl.cpp"  if="linux"/>
+   <file name="src/generic/listctrl.cpp"  unless="windows"/>
    <file name="src/generic/logg.cpp" />
    <file name="src/generic/markuptext.cpp" />
    <file name="src/generic/mask.cpp" if="linux" />
@@ -369,7 +441,7 @@
    <file name="src/generic/prntdlgg.cpp" />
    <file name="src/generic/progdlgg.cpp" />
    <file name="src/generic/propdlg.cpp" />
-   <file name="src/generic/regiong.cpp" unless="windows" />
+   <file name="src/generic/regiong.cpp" if="linux" />
    <file name="src/generic/renderg.cpp" />
    <file name="src/generic/richmsgdlgg.cpp" />
    <file name="src/generic/richtooltipg.cpp" />
@@ -381,7 +453,7 @@
    <file name="src/generic/splitter.cpp" />
    <file name="src/generic/srchctlg.cpp" />
    <file name="src/generic/statbmpg.cpp" />
-   <file name="src/generic/statline.cpp" unless="windows" />
+   <file name="src/generic/statline.cpp" if="linux" />
    <file name="src/generic/stattextg.cpp" />
    <file name="src/generic/statusbr.cpp" />
    <file name="src/generic/tabg.cpp" />
@@ -1082,7 +1154,7 @@
 
 
 
-<target id="default" output="${LIBPREFIX}wxwidgets${DBG}${LIBEXTRA}" tool="linker" toolid="static_link">
+<target id="default" output="libwxwidgets${DBG}${LIBEXTRA}" tool="linker" toolid="static_link">
   <files id="wxwidgets"/>
   <outdir name="../../lib/${BINDIR}"/>
 </target>
