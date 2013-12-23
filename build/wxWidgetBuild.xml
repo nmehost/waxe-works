@@ -9,6 +9,9 @@
 <set name="WXREGEXLIB" value="src/regex/" />
 <set name="WXTIFFLIB" value="src/tiff/libtiff/" />
 
+<set name="unix" value="1" if="macos" />
+<set name="unix" value="1" if="linux" />
+
 <files id="wxwidgets" >
    <compilerflag value="-Iinclude" />
    <compilerflag value="-Isrc/zlib" />
@@ -22,7 +25,7 @@
    <compilerflag value="-D_CRT_NON_CONFORMING_SWPRINTFS=1" />
    <compilerflag value="-D__WX__=1" />
    <compilerflag value="-D__NO_VC_CRTDBG__=1" />
-   <compilerflag value="-D_UNICODE=1" />
+   <compilerflag value="-D_UNICODE=1" unless="linux" />
    <compilerflag value="-DWXBUILDING" />
    <compilerflag value = "-D_FILE_OFFSET_BITS=64" />
    <compilerflag value = "-D_LARGE_FILES=64" />
@@ -36,6 +39,20 @@
       <compilerflag value = "-D__WXMSW__" if="windows"/>
    </section>
 
+   <section if="linux">
+      <compilerflag value="-I/usr/include/gtk-2.0" />
+      <compilerflag value="-I/usr/include/atk-1.0" />
+      <compilerflag value="-I/usr/include/cairo" />
+      <compilerflag value="-I/usr/include/gdk-pixbuf-2.0" />
+      <compilerflag value="-I/usr/include/pango-1.0" />
+      <compilerflag value="-I/usr/include/gio-unix-2.0/" />
+      <compilerflag value="-I/usr/include/glib-2.0" />
+      <compilerflag value="-I/usr/include/pixman-1" />
+      <compilerflag value="-I/usr/include/freetype2" />
+      <compilerflag value="-I/usr/include/gtk-unix-print-2.0" />
+      <compilerflag value="-I/usr/lib/x86_64-linux-gnu/gtk-2.0/include" />
+      <compilerflag value="-I/usr/lib/x86_64-linux-gnu/glib-2.0/include" />
+   </section>
 
    <section if="macos">
       <file name="src/osx/accel.cpp"/>
@@ -185,7 +202,7 @@
    </section>
 
 
-   <section if="macos">
+   <section if="unix">
 
       <file name="src/unix/apptraits.cpp"/>
       <file name="src/unix/appunix.cpp"/>
@@ -204,7 +221,7 @@
       <file name="src/unix/joystick.cpp"/>
       <file name="src/unix/mediactrl.cpp"/>
       <file name="src/unix/mimetype.cpp"/>
-      <file name="src/unix/net.cpp"/>
+      <file name="src/unix/net.cpp" unless="linux" />
       <file name="src/unix/snglinst.cpp"/>
       <file name="src/unix/sockunix.cpp"/>
       <!-- <file name="src/unix/sound.cpp"/> -->
@@ -381,7 +398,7 @@
    <!-- Generic -->
    <file name="src/generic/aboutdlgg.cpp" />
    <file name="src/generic/accel.cpp" if="linux" />
-   <file name="src/generic/animateg.cpp" />
+   <file name="src/generic/animateg.cpp" unless="linux"/>
    <file name="src/generic/bannerwindow.cpp" />
    <file name="src/generic/bmpcboxg.cpp"  unless="windows" />
    <file name="src/generic/busyinfo.cpp" />
@@ -390,10 +407,9 @@
    <file name="src/generic/caret.cpp" unless="windows" />
    <file name="src/generic/choicbkg.cpp" />
    <file name="src/generic/choicdgg.cpp" />
-   <file name="src/generic/clrpickerg.cpp" />
-   <file name="src/generic/collpaneg.cpp" />
-   <file name="src/generic/colour.cpp" if="linux"/>
-   <file name="src/generic/colrdlgg.cpp" />
+   <file name="src/generic/clrpickerg.cpp" unless="linux"/>
+   <file name="src/generic/collpaneg.cpp" unless="linux" />
+   <file name="src/generic/colrdlgg.cpp" unless="linux"/>
    <file name="src/generic/combog.cpp"  unless="windows" />
    <file name="src/generic/commandlinkbuttong.cpp" />
    <file name="src/generic/datavgen.cpp" />
@@ -409,7 +425,7 @@
    <file name="src/generic/filedlgg.cpp" />
    <file name="src/generic/filepickerg.cpp" />
    <file name="src/generic/fontdlgg.cpp" />
-   <file name="src/generic/fontpickerg.cpp" />
+   <file name="src/generic/fontpickerg.cpp" unless="linux"/>
    <file name="src/generic/fswatcherg.cpp" if="linux" />
    <file name="src/generic/graphicc.cpp" />
    <file name="src/generic/grid.cpp" />
@@ -431,7 +447,6 @@
    <file name="src/generic/mask.cpp" if="linux" />
    <file name="src/generic/mdig.cpp" />
    <file name="src/generic/msgdlgg.cpp" />
-   <file name="src/generic/notebook.cpp" if="linux"/>
    <file name="src/generic/notifmsgg.cpp" />
    <file name="src/generic/numdlgg.cpp" />
    <file name="src/generic/odcombo.cpp" />
@@ -441,7 +456,6 @@
    <file name="src/generic/prntdlgg.cpp" />
    <file name="src/generic/progdlgg.cpp" />
    <file name="src/generic/propdlg.cpp" />
-   <file name="src/generic/regiong.cpp" if="linux" />
    <file name="src/generic/renderg.cpp" />
    <file name="src/generic/richmsgdlgg.cpp" />
    <file name="src/generic/richtooltipg.cpp" />
@@ -453,7 +467,6 @@
    <file name="src/generic/splitter.cpp" />
    <file name="src/generic/srchctlg.cpp" />
    <file name="src/generic/statbmpg.cpp" />
-   <file name="src/generic/statline.cpp" if="linux" />
    <file name="src/generic/stattextg.cpp" />
    <file name="src/generic/statusbr.cpp" />
    <file name="src/generic/tabg.cpp" />
@@ -560,7 +573,6 @@
    <file name="src/common/fontdata.cpp" />
    <file name="src/common/fontenumcmn.cpp" />
    <file name="src/common/fontmap.cpp" />
-   <file name="src/common/fontmgrcmn.cpp" if="linux"/>
    <file name="src/common/fontpickercmn.cpp" />
    <file name="src/common/fontutilcmn.cpp" unless="windows" />
    <file name="src/common/framecmn.cpp" />
@@ -597,7 +609,7 @@
    <file name="src/common/imagpng.cpp" />
    <file name="src/common/imagpnm.cpp" />
    <file name="src/common/imagtga.cpp" />
-   <file name="src/common/imagtiff.cpp" />
+   <file name="src/common/imagtiff.cpp" unless="linux" />
    <file name="src/common/imagxpm.cpp" />
    <file name="src/common/init.cpp" />
    <file name="src/common/intl.cpp" />
@@ -785,47 +797,144 @@
    <file name="${WXPNGLIB}pngwtran.c" />
    <file name="${WXPNGLIB}pngwutil.c" />
 
-   <file name="${WXTIFFLIB}tif_aux.c" />
-   <file name="${WXTIFFLIB}tif_close.c" />
-   <file name="${WXTIFFLIB}tif_codec.c" />
-   <file name="${WXTIFFLIB}tif_color.c" />
-   <file name="${WXTIFFLIB}tif_compress.c" />
-   <file name="${WXTIFFLIB}tif_dir.c" />
-   <file name="${WXTIFFLIB}tif_dirinfo.c" />
-   <file name="${WXTIFFLIB}tif_dirread.c" />
-   <file name="${WXTIFFLIB}tif_dirwrite.c" />
-   <file name="${WXTIFFLIB}tif_dumpmode.c" />
-   <file name="${WXTIFFLIB}tif_error.c" />
-   <file name="${WXTIFFLIB}tif_extension.c" />
-   <file name="${WXTIFFLIB}tif_fax3.c" />
-   <file name="${WXTIFFLIB}tif_fax3sm.c" />
-   <file name="${WXTIFFLIB}tif_flush.c" />
-   <file name="${WXTIFFLIB}tif_getimage.c" />
-   <file name="${WXTIFFLIB}tif_jbig.c" />
-   <file name="${WXTIFFLIB}tif_jpeg.c" />
-   <file name="${WXTIFFLIB}tif_jpeg_12.c" />
-   <file name="${WXTIFFLIB}tif_luv.c" />
-   <file name="${WXTIFFLIB}tif_lzma.c" />
-   <file name="${WXTIFFLIB}tif_lzw.c" />
-   <file name="${WXTIFFLIB}tif_next.c" />
-   <file name="${WXTIFFLIB}tif_ojpeg.c" />
-   <file name="${WXTIFFLIB}tif_open.c" />
-   <file name="${WXTIFFLIB}tif_packbits.c" />
-   <file name="${WXTIFFLIB}tif_pixarlog.c" />
-   <file name="${WXTIFFLIB}tif_predict.c" />
-   <file name="${WXTIFFLIB}tif_print.c" />
-   <file name="${WXTIFFLIB}tif_read.c" />
-   <file name="${WXTIFFLIB}tif_strip.c" />
-   <file name="${WXTIFFLIB}tif_swab.c" />
-   <file name="${WXTIFFLIB}tif_thunder.c" />
-   <file name="${WXTIFFLIB}tif_tile.c" />
-   <file name="${WXTIFFLIB}tif_version.c" />
-   <file name="${WXTIFFLIB}tif_warning.c" />
-   <file name="${WXTIFFLIB}tif_win32.c" if="windows" />
-   <file name="${WXTIFFLIB}tif_write.c" />
-   <file name="${WXTIFFLIB}tif_zip.c" />
+   <section unless="linux">
+      <file name="${WXTIFFLIB}tif_aux.c" />
+      <file name="${WXTIFFLIB}tif_close.c" />
+      <file name="${WXTIFFLIB}tif_codec.c" />
+      <file name="${WXTIFFLIB}tif_color.c" />
+      <file name="${WXTIFFLIB}tif_compress.c" />
+      <file name="${WXTIFFLIB}tif_dir.c" />
+      <file name="${WXTIFFLIB}tif_dirinfo.c" />
+      <file name="${WXTIFFLIB}tif_dirread.c" />
+      <file name="${WXTIFFLIB}tif_dirwrite.c" />
+      <file name="${WXTIFFLIB}tif_dumpmode.c" />
+      <file name="${WXTIFFLIB}tif_error.c" />
+      <file name="${WXTIFFLIB}tif_extension.c" />
+      <file name="${WXTIFFLIB}tif_fax3.c" />
+      <file name="${WXTIFFLIB}tif_fax3sm.c" />
+      <file name="${WXTIFFLIB}tif_flush.c" />
+      <file name="${WXTIFFLIB}tif_getimage.c" />
+      <file name="${WXTIFFLIB}tif_jbig.c" />
+      <file name="${WXTIFFLIB}tif_jpeg.c" />
+      <file name="${WXTIFFLIB}tif_jpeg_12.c" />
+      <file name="${WXTIFFLIB}tif_luv.c" />
+      <file name="${WXTIFFLIB}tif_lzma.c" />
+      <file name="${WXTIFFLIB}tif_lzw.c" />
+      <file name="${WXTIFFLIB}tif_next.c" />
+      <file name="${WXTIFFLIB}tif_ojpeg.c" />
+      <file name="${WXTIFFLIB}tif_open.c" />
+      <file name="${WXTIFFLIB}tif_packbits.c" />
+      <file name="${WXTIFFLIB}tif_pixarlog.c" />
+      <file name="${WXTIFFLIB}tif_predict.c" />
+      <file name="${WXTIFFLIB}tif_print.c" />
+      <file name="${WXTIFFLIB}tif_read.c" />
+      <file name="${WXTIFFLIB}tif_strip.c" />
+      <file name="${WXTIFFLIB}tif_swab.c" />
+      <file name="${WXTIFFLIB}tif_thunder.c" />
+      <file name="${WXTIFFLIB}tif_tile.c" />
+      <file name="${WXTIFFLIB}tif_version.c" />
+      <file name="${WXTIFFLIB}tif_warning.c" />
+      <file name="${WXTIFFLIB}tif_win32.c" if="windows" />
+      <file name="${WXTIFFLIB}tif_write.c" />
+      <file name="${WXTIFFLIB}tif_zip.c" />
+   </section>
  
 
+   <section if="linux" >
+      <file name="src/gtk/private.cpp" />
+      <file name="src/gtk/clipbrd.cpp" />
+      <file name="src/gtk/bmpbuttn.cpp" />
+      <file name="src/gtk/glcanvas.cpp" />
+      <file name="src/gtk/tooltip.cpp" />
+      <file name="src/gtk/calctrl.cpp" />
+      <file name="src/gtk/gauge.cpp" />
+      <file name="src/gtk/utilsgtk.cpp" />
+      <file name="src/gtk/brush.cpp" />
+      <file name="src/gtk/notebook.cpp" />
+      <file name="src/gtk/msgdlg.cpp" />
+      <file name="src/gtk/textentry.cpp" />
+      <file name="src/gtk/dcclient.cpp" />
+      <file name="src/gtk/control.cpp" />
+      <file name="src/gtk/minifram.cpp" />
+      <file name="src/gtk/filehistory.cpp" />
+      <file name="src/gtk/slider.cpp" />
+      <file name="src/gtk/artgtk.cpp" />
+      <file name="src/gtk/scrolbar.cpp" />
+      <file name="src/gtk/frame.cpp" />
+      <file name="src/gtk/pen.cpp" />
+      <file name="src/gtk/colour.cpp" />
+      <file name="src/gtk/combobox.cpp" />
+      <file name="src/gtk/bmpcbox.cpp" />
+      <file name="src/gtk/toplevel.cpp" />
+      <file name="src/gtk/app.cpp" />
+      <file name="src/gtk/textmeasure.cpp" />
+      <file name="src/gtk/statline.cpp" />
+      <file name="src/gtk/region.cpp" />
+      <file name="src/gtk/cursor.cpp" />
+      <file name="src/gtk/statbox.cpp" />
+      <file name="src/gtk/anybutton.cpp" />
+      <file name="src/gtk/filedlg.cpp" />
+      <file name="src/gtk/dnd.cpp" />
+      <file name="src/gtk/spinctrl.cpp" />
+      <file name="src/gtk/radiobox.cpp" />
+      <file name="src/gtk/mdi.cpp" />
+      <file name="src/gtk/dcscreen.cpp" />
+      <file name="src/gtk/bitmap.cpp" />
+      <file name="src/gtk/gnome/gvfs.cpp" />
+      <file name="src/gtk/notifmsg.cpp" />
+      <file name="src/gtk/collpane.cpp" />
+      <file name="src/gtk/sockgtk.cpp" />
+      <file name="src/gtk/animate.cpp" />
+      <file name="src/gtk/tglbtn.cpp" />
+      <file name="src/gtk/colordlg.cpp" />
+      <file name="src/gtk/timer.cpp" />
+      <file name="src/gtk/nativewin.cpp" />
+      <file name="src/gtk/hyperlink.cpp" />
+      <file name="src/gtk/taskbar.cpp" />
+      <file name="src/gtk/evtloop.cpp" />
+      <file name="src/gtk/renderer.cpp" />
+      <file name="src/gtk/statbmp.cpp" />
+      <file name="src/gtk/checklst.cpp" />
+      <file name="src/gtk/print.cpp" if="not" />
+      <file name="src/gtk/button.cpp" />
+      <file name="src/gtk/checkbox.cpp" />
+      <file name="src/gtk/fontdlg.cpp" />
+      <file name="src/gtk/settings.cpp" />
+      <file name="src/gtk/filepicker.cpp" />
+      <file name="src/gtk/font.cpp" />
+      <file name="src/gtk/menu.cpp" />
+      <file name="src/gtk/hildon/notifmsg.cpp" />
+      <file name="src/gtk/dc.cpp" />
+      <file name="src/gtk/dirdlg.cpp" />
+      <file name="src/gtk/spinbutt.cpp" />
+      <file name="src/gtk/radiobut.cpp" />
+      <file name="src/gtk/stattext.cpp" />
+      <file name="src/gtk/infobar.cpp" />
+      <file name="src/gtk/fontpicker.cpp" />
+      <file name="src/gtk/window.cpp" />
+      <file name="src/gtk/nonownedwnd.cpp" />
+      <file name="src/gtk/dialog.cpp" />
+      <file name="src/gtk/aboutdlg.cpp" />
+      <file name="src/gtk/win_gtk.cpp" />
+      <file name="src/gtk/dcmemory.cpp" />
+      <file name="src/gtk/assertdlg_gtk.cpp" />
+      <file name="src/gtk/scrolwin.cpp" />
+      <file name="src/gtk/webview_webkit.cpp" />
+      <file name="src/gtk/dataview.cpp" />
+      <file name="src/gtk/choice.cpp" />
+      <file name="src/gtk/textctrl.cpp" />
+      <file name="src/gtk/toolbar.cpp" />
+      <file name="src/gtk/listbox.cpp" />
+      <file name="src/gtk/popupwin.cpp" />
+      <file name="src/gtk/mnemonics.cpp" />
+      <file name="src/gtk/dataobj.cpp" />
+      <file name="src/gtk/clrpicker.cpp" />
+      <file name="src/gtk/print.cpp" />
+      <file name="src/gtk/filectrl.cpp" />
+      <file name="src/gtk/eggtrayicon.c" />
+      <file name="src/gtk/treeentry_gtk.c" />
+   </section>
+   
    <!-- regex -->
    <file name="${WXREGEXLIB}regcomp.c" />
    <file name="${WXREGEXLIB}regerror.c" />
@@ -1161,8 +1270,4 @@
 
 
 </xml>
-
-
-
-
 
