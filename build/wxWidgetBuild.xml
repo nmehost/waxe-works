@@ -13,7 +13,7 @@
 <set name="unix" value="1" if="linux" />
 
 <files id="wxwidgets" >
-   <precompiledheader name="wx/wxprec" dir="include/wx" if="USE_PRECOMPILED_HEADERS"/>
+   <precompiledheader name="wx/wxprec" dir="../../include" if="USE_PRECOMPILED_HEADERS"/>
 
    <compilerflag value="-Iinclude" />
    <compilerflag value="-Isrc/zlib" />
@@ -169,9 +169,9 @@
 
       <file name="src/osx/carbon/app.cpp"/>
       <file name="src/osx/carbon/clipbrd.cpp"/>
-      <file name="src/osx/carbon/colordlg.cpp"/>
+      <!--<file name="src/osx/carbon/colordlg.cpp"/>-->
       <file name="src/osx/carbon/colordlgosx.mm"/>
-      <file name="src/osx/carbon/combobox.cpp"/>
+      <!--<file name="src/osx/carbon/combobox.cpp"/>-->
       <file name="src/osx/carbon/control.cpp"/>
       <file name="src/osx/carbon/cursor.cpp"/>
       <file name="src/osx/carbon/dataobj.cpp"/>
@@ -186,20 +186,20 @@
       <file name="src/osx/carbon/gdiobj.cpp"/>
       <file name="src/osx/carbon/graphics.cpp"/>
       <file name="src/osx/carbon/icon.cpp"/>
-      <file name="src/osx/carbon/joystick.cpp"/>
-      <file name="src/osx/carbon/main.cpp"/>
+      <!--<file name="src/osx/carbon/joystick.cpp"/>-->
+      <!--<file name="src/osx/carbon/main.cpp"/>-->
       <file name="src/osx/carbon/mdi.cpp"/>
       <file name="src/osx/carbon/mediactrl.cpp"/>
-      <file name="src/osx/carbon/menuitem.cpp"/>
-      <file name="src/osx/carbon/overlay.cpp"/>
+      <!--<file name="src/osx/carbon/menuitem.cpp"/>-->
+      <!--<file name="src/osx/carbon/overlay.cpp"/>-->
       <file name="src/osx/carbon/popupwin.cpp"/>
       <file name="src/osx/carbon/region.cpp"/>
       <file name="src/osx/carbon/renderer.cpp"/>
       <file name="src/osx/carbon/settings.cpp"/>
-      <file name="src/osx/carbon/sound.cpp"/>
+      <!--<file name="src/osx/carbon/sound.cpp"/>-->
       <file name="src/osx/carbon/statbrma.cpp"/>
       <file name="src/osx/carbon/statline.cpp"/>
-      <file name="src/osx/carbon/uma.cpp"/>
+      <!--<file name="src/osx/carbon/uma.cpp"/>-->
       <file name="src/osx/carbon/utilscocoa.mm"/>
    </section>
 
@@ -208,22 +208,22 @@
 
       <file name="src/unix/apptraits.cpp"/>
       <file name="src/unix/appunix.cpp"/>
-      <file name="src/unix/dialup.cpp"/>
+      <file name="src/unix/dialup.cpp" if="linux"/>
       <file name="src/unix/dir.cpp"/>
       <file name="src/unix/displayx11.cpp" if="linux" />
       <file name="src/unix/dlunix.cpp"/>
-      <file name="src/unix/epolldispatcher.cpp"/>
+      <file name="src/unix/epolldispatcher.cpp" if="linux"/>
       <file name="src/unix/evtloopunix.cpp"/>
       <file name="src/unix/fdiounix.cpp"/>
       <file name="src/unix/fontenum.cpp" if="linux"/>
       <file name="src/unix/fontutil.cpp" if="linux" />
-      <file name="src/unix/fswatcher_inotify.cpp"/>
+      <file name="src/unix/fswatcher_inotify.cpp" if="linux"/>
       <file name="src/unix/fswatcher_kqueue.cpp"/>
       <file name="src/unix/glx11.cpp" if="linux" />
-      <file name="src/unix/joystick.cpp"/>
+      <file name="src/unix/joystick.cpp" if="linux" />
       <file name="src/unix/mediactrl.cpp"/>
       <file name="src/unix/mimetype.cpp"/>
-      <file name="src/unix/net.cpp" unless="linux" />
+      <!--<file name="src/unix/net.cpp"  />-->
       <file name="src/unix/snglinst.cpp"/>
       <file name="src/unix/sockunix.cpp"/>
       <!-- <file name="src/unix/sound.cpp"/> -->
@@ -489,7 +489,7 @@
    <!-- Common -->
    <file name="src/common/extended.c" />
    <file name="src/common/accelcmn.cpp" />
-   <file name="src/common/accesscmn.cpp" unless="windows" />
+   <file name="src/common/accesscmn.cpp" if="linux" />
    <file name="src/common/affinematrix2d.cpp" />
    <file name="src/common/anidecod.cpp" />
    <file name="src/common/animatecmn.cpp" />
@@ -509,7 +509,7 @@
    <file name="src/common/bmpcboxcmn.cpp" />
    <file name="src/common/bookctrl.cpp" />
    <file name="src/common/btncmn.cpp" />
-   <file name="src/common/cairo.cpp" unless="windows" />
+   <file name="src/common/cairo.cpp" if="linux" />
    <file name="src/common/calctrlcmn.cpp" />
    <file name="src/common/checkboxcmn.cpp" />
    <file name="src/common/checklstcmn.cpp" />
@@ -536,8 +536,8 @@
    <file name="src/common/dcbase.cpp" />
    <file name="src/common/dcbufcmn.cpp" />
    <file name="src/common/dcgraph.cpp" />
-   <file name="src/common/dcsvg.cpp" />
-   <file name="src/common/debugrpt.cpp" />
+   <file name="src/common/dcsvg.cpp" unless="macos"/>
+   <file name="src/common/debugrpt.cpp" unless="macos"/>
    <file name="src/common/dircmn.cpp" />
    <file name="src/common/dirctrlcmn.cpp" />
    <file name="src/common/dlgcmn.cpp" />
@@ -575,7 +575,7 @@
    <file name="src/common/fontenumcmn.cpp" />
    <file name="src/common/fontmap.cpp" />
    <file name="src/common/fontpickercmn.cpp" />
-   <file name="src/common/fontutilcmn.cpp" unless="windows" />
+   <file name="src/common/fontutilcmn.cpp" if="linux" />
    <file name="src/common/framecmn.cpp" />
    <file name="src/common/fs_arc.cpp" />
    <file name="src/common/fs_filter.cpp" />
@@ -610,7 +610,7 @@
    <file name="src/common/imagpng.cpp" />
    <file name="src/common/imagpnm.cpp" />
    <file name="src/common/imagtga.cpp" />
-   <file name="src/common/imagtiff.cpp" unless="linux" />
+   <file name="src/common/imagtiff.cpp" if="windows" />
    <file name="src/common/imagxpm.cpp" />
    <file name="src/common/init.cpp" />
    <file name="src/common/intl.cpp" />
@@ -625,7 +625,7 @@
    <file name="src/common/markupparser.cpp" />
    <file name="src/common/matrix.cpp" />
    <file name="src/common/mediactrlcmn.cpp" />
-   <file name="src/common/memory.cpp" unless="windows" />
+   <file name="src/common/memory.cpp" if="linux" />
    <file name="src/common/menucmn.cpp" />
    <file name="src/common/mimecmn.cpp" />
    <file name="src/common/modalhook.cpp" />
@@ -638,7 +638,7 @@
    <file name="src/common/object.cpp" />
    <file name="src/common/odcombocmn.cpp" />
    <file name="src/common/overlaycmn.cpp" />
-   <file name="src/common/ownerdrwcmn.cpp" />
+   <file name="src/common/ownerdrwcmn.cpp" unless="macos" />
    <file name="src/common/panelcmn.cpp" />
    <file name="src/common/paper.cpp" />
    <file name="src/common/persist.cpp" />
@@ -654,7 +654,7 @@
    <file name="src/common/radiobtncmn.cpp" />
    <file name="src/common/radiocmn.cpp" />
    <file name="src/common/rearrangectrl.cpp" />
-   <file name="src/common/regex.cpp" />
+   <file name="src/common/regex.cpp" unless="macos"/>
    <file name="src/common/rendcmn.cpp" />
    <file name="src/common/rgncmn.cpp" />
    <file name="src/common/richtooltipcmn.cpp" />
@@ -686,7 +686,7 @@
    <file name="src/common/stream.cpp" />
    <file name="src/common/string.cpp" />
    <file name="src/common/stringimpl.cpp" />
-   <file name="src/common/stringops.cpp" unless="windows" />
+   <file name="src/common/stringops.cpp" if="linux" />
    <file name="src/common/strvararg.cpp" />
    <file name="src/common/sysopt.cpp" />
    <file name="src/common/tarstrm.cpp" />
@@ -725,12 +725,12 @@
    <file name="src/common/windowid.cpp" />
    <file name="src/common/wrapsizer.cpp" />
    <file name="src/common/wxcrt.cpp" />
-   <file name="src/common/wxprintf.cpp" unless="windows" />
+   <file name="src/common/wxprintf.cpp" if="linux" />
    <file name="src/common/xlocale.cpp" />
    <file name="src/common/xpmdecod.cpp" />
-   <file name="src/common/xti.cpp" unless="windows" />
-   <file name="src/common/xtistrm.cpp" unless="windows" />
-   <file name="src/common/xtixml.cpp" unless="windows" />
+   <file name="src/common/xti.cpp" if="linux" />
+   <file name="src/common/xtistrm.cpp" if="linux" />
+   <file name="src/common/xtixml.cpp" if="linux" />
    <file name="src/common/zipstrm.cpp" />
    <file name="src/common/zstream.cpp" />
 
@@ -811,18 +811,21 @@
       <file name="${WXTIFFLIB}tif_dumpmode.c" />
       <file name="${WXTIFFLIB}tif_error.c" />
       <file name="${WXTIFFLIB}tif_extension.c" />
-      <file name="${WXTIFFLIB}tif_fax3.c" />
-      <file name="${WXTIFFLIB}tif_fax3sm.c" />
       <file name="${WXTIFFLIB}tif_flush.c" />
       <file name="${WXTIFFLIB}tif_getimage.c" />
+      <!--
+      <file name="${WXTIFFLIB}tif_fax3.c" />
+      <file name="${WXTIFFLIB}tif_fax3sm.c" />
       <file name="${WXTIFFLIB}tif_jbig.c" />
       <file name="${WXTIFFLIB}tif_jpeg.c" />
       <file name="${WXTIFFLIB}tif_jpeg_12.c" />
-      <file name="${WXTIFFLIB}tif_luv.c" />
       <file name="${WXTIFFLIB}tif_lzma.c" />
+      <file name="${WXTIFFLIB}tif_ojpeg.c" />
+      <file name="${WXTIFFLIB}tif_zip.c" />
+      -->
+      <file name="${WXTIFFLIB}tif_luv.c" />
       <file name="${WXTIFFLIB}tif_lzw.c" />
       <file name="${WXTIFFLIB}tif_next.c" />
-      <file name="${WXTIFFLIB}tif_ojpeg.c" />
       <file name="${WXTIFFLIB}tif_open.c" />
       <file name="${WXTIFFLIB}tif_packbits.c" />
       <file name="${WXTIFFLIB}tif_pixarlog.c" />
@@ -837,7 +840,6 @@
       <file name="${WXTIFFLIB}tif_warning.c" />
       <file name="${WXTIFFLIB}tif_win32.c" if="windows" />
       <file name="${WXTIFFLIB}tif_write.c" />
-      <file name="${WXTIFFLIB}tif_zip.c" />
    </section>
  
 
@@ -953,7 +955,7 @@
    <file name="${AUILIB}tabartgtk.cpp" if="linux" />
 
    <!-- HTML -->
-   <file name="src/html/chm.cpp" unless="windows" />
+   <file name="src/html/chm.cpp" if="linux" />
    <file name="src/html/helpctrl.cpp" />
    <file name="src/html/helpdata.cpp" />
    <file name="src/html/helpdlg.cpp" />
