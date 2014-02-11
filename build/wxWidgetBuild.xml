@@ -13,6 +13,8 @@
 <set name="unix" value="1" if="linux" />
 
 <files id="wxwidgets" >
+   <precompiledheader name="wx/wxprec" dir="include/wx" if="USE_PRECOMPILED_HEADERS"/>
+
    <compilerflag value="-Iinclude" />
    <compilerflag value="-Isrc/zlib" />
    <compilerflag value="-Isrc/png" />
@@ -549,7 +551,6 @@
    <file name="src/common/dynlib.cpp" />
    <file name="src/common/dynload.cpp" />
    <file name="src/common/effects.cpp" />
-   <file name="src/common/emptydmy.cpp" />
    <file name="src/common/encconv.cpp" />
    <file name="src/common/event.cpp" />
    <file name="src/common/evtloopcmn.cpp" />
