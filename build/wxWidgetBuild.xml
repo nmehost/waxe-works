@@ -13,7 +13,7 @@
 <set name="unix" value="1" if="linux" />
 
 <files id="wxwidgets" >
-   <precompiledheader name="wx/wxprec" dir="../../include" if="USE_PRECOMPILED_HEADERS"/>
+   <precompiledheader name="wx/wxprec" dir="include" if="USE_PRECOMPILED_HEADERS"/>
 
    <compilerflag value="-Iinclude" />
    <compilerflag value="-Isrc/zlib" />
