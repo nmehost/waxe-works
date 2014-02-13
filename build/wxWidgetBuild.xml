@@ -414,7 +414,7 @@
    <file name="src/generic/colrdlgg.cpp" unless="linux"/>
    <file name="src/generic/combog.cpp"  unless="windows" />
    <file name="src/generic/commandlinkbuttong.cpp" />
-   <file name="src/generic/datavgen.cpp" />
+   <file name="src/generic/datavgen.cpp" unless="macos"/>
    <file name="src/generic/datectlg.cpp" />
    <file name="src/generic/dbgrptg.cpp" unless="macos" />
    <file name="src/generic/dcpsg.cpp"  unless="windows" />

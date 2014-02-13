@@ -45,6 +45,7 @@
 //
 // Recommended setting: 0 (please update your code)
 #define WXWIN_COMPATIBILITY_2_8 1
+#define WXWIN_COMPATIBILITY_3_0 1
 
 // MSW-only: Set to 0 for accurate dialog units, else 1 for old behaviour when
 // default system font is used for wxWindow::GetCharWidth/Height() instead of

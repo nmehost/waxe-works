@@ -25,16 +25,15 @@ class Run
          haxeExtra.push(arg);
 
       var root = trimSlash(Sys.getCwd());
-      var extract = root + "/build/extract";
+      var extract = root + "/build/wxWidgets";
       if (!FileSystem.exists(extract + "/extracted"))
       {
-         mkdir(extract);
-         Sys.setCwd(extract);
-
+         Sys.setCwd(root+"/build");
          Sys.println("Extracting...");
-         Sys.command("tar", ["xvzf", "../src/wxWidgets-3.0.0.tgz"]);
-         File.saveContent("extracted", "ok\n" );
+         Sys.command("tar", ["xvzf", "src/wxWidgets-20140212.tgz"]);
+         File.saveContent("wxWidgets/extracted", "ok\n" );
          Sys.println("extracted ok");
+         Sys.setCwd(extract);
       }
       else
       {
@@ -53,7 +52,7 @@ class Run
       Sys.println("Headers...");
       Sys.setCwd( root );
       mkdir("include");
-      copyRecurse("build/extract/include/wx", "include/wx");
+      copyRecurse("build/wxWidgets/include/wx", "include/wx");
       copyRecurse("build/setup", "include/wx");
       Sys.println("Done.");
    }
