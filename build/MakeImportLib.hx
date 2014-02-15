@@ -23,6 +23,7 @@ class MakeImportLib
             "GL",
             "Xxf86vm",
             "Xext",
+            "SM",
             "dl",
             "X11" ])
           {
@@ -64,31 +65,36 @@ class MakeImportLib
 
       var proc = new sys.io.Process("nm", ["-D", "--defined-only", name]);
       var out = proc.stdout;
-      var output = new Array<String>();
+      var functions = new Array<String>();
+      var data = new Array<String>();
       try
       {
          while(true)
          {
             var line = out.readLine();
             var parts = line.split(" ");
-            if (parts[1]!="T")
+            if (parts[1]=="R")
+               data.push(parts[2]);
+            else if (parts[1]!="T")
                Sys.println("Unknown line format " + line);
             else if (parts[2]=="_init" || parts[2]=="_fini")
                Sys.println("Ignore " + parts[2]);
             else
-               output.push(parts[2]);
+               functions.push(parts[2]);
          }
       }
       catch(e:Dynamic){ }
-      if (output.length==0)
+      if (functions.length==0 && data.length==0)
         throw "Could not find symbols in " + name;
 
       var baseName = Path.withoutDirectory(name);
 
       var cFile = dir + "/" + baseName + ".c";
       var lines = new Array<String>();
-      for(line in output)
+      for(line in functions)
          lines.push('void $line(){};');
+      for(datum in data)
+         lines.push('const int $datum = 123;');
       File.saveContent(cFile, lines.join("\n"));
       var bitArg = bits==64 ? "-m64" : "-m32";
 
