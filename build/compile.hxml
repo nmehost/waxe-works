@@ -1,2 +1,2 @@
--main Run
--neko ../run.n
+-main Build
+-neko build.n
