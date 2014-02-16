@@ -1,0 +1,3 @@
+#ifndef WAXE_WORKS_VERSION_NAME
+#define WAXE_WORKS_VERSION_NAME "0.0.0"
+#endif
