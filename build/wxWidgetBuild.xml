@@ -52,8 +52,14 @@
       <compilerflag value="-I/usr/include/pixman-1" />
       <compilerflag value="-I/usr/include/freetype2" />
       <compilerflag value="-I/usr/include/gtk-unix-print-2.0" />
-      <compilerflag value="-I/usr/lib/x86_64-linux-gnu/gtk-2.0/include" />
-      <compilerflag value="-I/usr/lib/x86_64-linux-gnu/glib-2.0/include" />
+      <section if="M64">
+         <compilerflag value="-I/usr/lib/x86_64-linux-gnu/gtk-2.0/include" />
+         <compilerflag value="-I/usr/lib/x86_64-linux-gnu/glib-2.0/include" />
+      </section>
+      <section unless="M64">
+         <compilerflag value="-I/usr/lib/i386-linux-gnu/gtk-2.0/include" />
+         <compilerflag value="-I/usr/lib/i386-linux-gnu/glib-2.0/include" />
+      </section>
    </section>
 
    <section if="macos">
