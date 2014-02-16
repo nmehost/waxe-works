@@ -1,0 +1,11 @@
+{
+  "name": "waxe-works",
+  "url": "http://nmehost.com/",
+  "license": "MIT",
+  "tags": [],
+  "description": "Supporting headers and libraries to make it easy to build waxe from source, and to statically link waxe.",
+  "version": "1.0.0",
+  "releasenote": "release",
+  "contributors": ["gamehaxe"],
+  "dependencies": {}
+}
