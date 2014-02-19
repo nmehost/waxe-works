@@ -1,5 +1,7 @@
 <xml>
 
+<set name="static_link" value="1" />
+
 <include name="${HXCPP}/build-tool/BuildCommon.xml"/>
 
 
@@ -1274,7 +1276,7 @@
 
 
 
-<target id="default" output="libwxwidgets${DBG}${LIBEXTRA}" tool="linker" toolid="static_link">
+<target id="default" output="libwxwidgets${DBG}${MSVC_LIB_VERSION}${LIBEXTRA}" tool="linker" toolid="static_link">
   <files id="wxwidgets"/>
   <outdir name="../../lib/${BINDIR}"/>
 </target>

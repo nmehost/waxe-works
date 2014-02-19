@@ -42,12 +42,12 @@ class Build
       Sys.setCwd(extract);
 
       Sys.println("Setup...");
-      File.copy("../wxWidgetBuild.xml", "wxWidgetBuild.xml");
+      File.copy("../Build.xml", "Build.xml");
 
       copyRecurse("../setup", "include/wx");
 
       Sys.println("Build...");
-      Sys.command("haxelib", ["run", "hxcpp", "wxWidgetBuild.xml"].concat(haxeExtra) );
+      Sys.command("haxelib", ["run", "hxcpp", "Build.xml"].concat(haxeExtra) );
 
       Sys.setCwd(root);
       Sys.println("Headers...");

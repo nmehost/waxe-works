@@ -306,7 +306,8 @@
         || (defined(_MSC_VER) && _MSC_VER < 1200)
     #define wxUSE_STD_DEFAULT  0
 #else
-    #define wxUSE_STD_DEFAULT  1
+    //#define wxUSE_STD_DEFAULT  1
+    #define wxUSE_STD_DEFAULT  0
 #endif
 
 // Use standard C++ containers to implement wxVector<>, wxStack<>, wxDList<>
