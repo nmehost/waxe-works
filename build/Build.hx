@@ -45,6 +45,7 @@ class Build
       File.copy("../Build.xml", "Build.xml");
 
       copyRecurse("../setup", "include/wx");
+      File.copy("../patches/zconf.h", "src/zlib/zconf.h");
 
       Sys.println("Build...");
       Sys.command("haxelib", ["run", "hxcpp", "Build.xml"].concat(haxeExtra) );

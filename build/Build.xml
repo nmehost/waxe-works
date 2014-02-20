@@ -990,23 +990,21 @@
    <file name="src/html/winpars.cpp" />
 
 
-   <section unless="static_link">
-      <file name="src/zlib/adler32.c" />
-      <file name="src/zlib/compress.c" />
-      <file name="src/zlib/crc32.c" />
-      <file name="src/zlib/deflate.c" />
-      <file name="src/zlib/gzclose.c" />
-      <file name="src/zlib/gzlib.c" />
-      <file name="src/zlib/gzread.c" />
-      <file name="src/zlib/gzwrite.c" />
-      <file name="src/zlib/infback.c" />
-      <file name="src/zlib/inffast.c" />
-      <file name="src/zlib/inflate.c" />
-      <file name="src/zlib/inftrees.c" />
-      <file name="src/zlib/trees.c" />
-      <file name="src/zlib/uncompr.c" />
-      <file name="src/zlib/zutil.c" />
-   </section>
+   <file name="src/zlib/adler32.c" />
+   <file name="src/zlib/compress.c" />
+   <file name="src/zlib/crc32.c" />
+   <file name="src/zlib/deflate.c" />
+   <file name="src/zlib/gzclose.c" />
+   <file name="src/zlib/gzlib.c" />
+   <file name="src/zlib/gzread.c" />
+   <file name="src/zlib/gzwrite.c" />
+   <file name="src/zlib/infback.c" />
+   <file name="src/zlib/inffast.c" />
+   <file name="src/zlib/inflate.c" />
+   <file name="src/zlib/inftrees.c" />
+   <file name="src/zlib/trees.c" />
+   <file name="src/zlib/uncompr.c" />
+   <file name="src/zlib/zutil.c" />
  
 
 <section if="not" >
@@ -1276,7 +1274,7 @@
 
 
 
-<target id="default" output="libwxwidgets${DBG}${MSVC_LIB_VERSION}${LIBEXTRA}" tool="linker" toolid="static_link">
+<target id="default" output="libwxwidgets${MSVC_LIB_VERSION}${LIBEXTRA}" tool="linker" toolid="static_link">
   <files id="wxwidgets"/>
   <outdir name="../../lib/${BINDIR}"/>
 </target>
