@@ -130,6 +130,7 @@
       <file name="src/osx/toplevel_osx.cpp"/>
       <file name="src/osx/uiaction_osx.cpp"/>
       <file name="src/osx/utils_osx.cpp"/>
+      <file name="src/osx/webview_webkit.mm"/>
       <file name="src/osx/window_osx.cpp"/>
 
       <file name="src/osx/cocoa/aboutdlg.mm"/>
